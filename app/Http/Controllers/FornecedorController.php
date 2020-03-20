@@ -45,7 +45,7 @@ class FornecedorController extends Controller
         $demaior = 1; 
             $empresa = Empresa::find($request->id_empresa);
             
-        if($demaior == 1){
+        if($demaior == 1) {
             $fornecedor = new Fornecedor([
             'nome' => $request->get('nome'),
             'id_empresa' => $request->get('id_empresa'),
@@ -59,15 +59,15 @@ class FornecedorController extends Controller
             $fornecedor->save();
             return redirect('/fornecedores')->with('sucesso', 'Fornecedor salvo!');
         }else{
-            $erro = 'USUÁRIO MENOR DE IDADE PARA ESSE ESTADO';
-            return redirect()->route('fornecedores.index')->with(['erro' => $erro]);
+            $error = 'Menor de idade!';
+            return redirect()->route('fornecedores.index')->with(['erro' => $error]);
         }
         return redirect()->route('fornecedores.index');
 
-        if($empresa->uf == 'PR' && $fornecedor->tipo_pessoa == 'F'){
-                $verify = strtotime(Carbon::now()->subYears(18)->format('d-m-Y'))-strtotime($request->data_nascimento);
-                if($verify >= 0){
-                }else{
+        if($empresa->uf == 'PR' && $fornecedor->tipo_pessoa == 'F') {
+                $verificar = strtotime(Carbon::now()->subYears(18)->format('d-m-Y'))-strtotime($request->data_nascimento);
+                if($verificar >= 0) {
+                } else {
                     $demaior = 0;
                 }
     
@@ -95,7 +95,9 @@ class FornecedorController extends Controller
     public function edit($id)
     {
         $fornecedor = Fornecedor::find($id);
-        return view('fornecedores.edit', compact('fornecedor'));
+        $empresas = Empresa::all();
+        // return view('fornecedores.edit', compact('fornecedor'));
+        return view('fornecedores.edit')->with(['fornecedor' => $fornecedor, 'empresas' => $empresas]);
     }
 
     /**
@@ -107,27 +109,58 @@ class FornecedorController extends Controller
      */
     public function update(FornecedorRequest $request, $id)
     {
-        $request->validate([
-            'nome' => 'required',
-            'tipo_pessoa' => 'required',
-            'cpf_cnpj' => 'required',
-            'data_hora' => 'required',
-            'telefone' => 'required'
-            // 'rg' => 'required',
-            // 'data_nascimento' => 'required'
-        ]);
+    //     $request->validate([
+    //         'nome' => 'required',
+    //         'tipo_pessoa' => 'required',
+    //         'cpf_cnpj' => 'required',
+    //         'data_hora' => 'required',
+    //         'telefone' => 'required'
+    //         // 'rg' => 'required',
+    //         // 'data_nascimento' => 'required'
+    //     ]);
 
-        $fornecedor = Fornecedor::find($id);
-        $fornecedor->nome = $request->get('nome');
-        $fornecedor->tipo_pessoa = $request->get('tipo_pessoa');
-        $fornecedor->cpf_cnpj = $request->get('cpf_cnpj');
-        $fornecedor->data_hora = $request->get('data_hora');
-        $fornecedor->telefone = $request->get('telefone');
-        $fornecedor->rg = $request->get('rg');
-        $fornecedor->data_nascimento = $request->get('data_nascimento');
-        $fornecedor->save();
-        return redirect('/fornecedores')->with('sucesso', 'Fornecedor atualizado!');
+        // $fornecedor = Fornecedor::find($id);
+        // $fornecedor->nome = $request->get('nome');
+        // $fornecedor->tipo_pessoa = $request->get('tipo_pessoa');
+        // $fornecedor->cpf_cnpj = $request->get('cpf_cnpj');
+        // $fornecedor->data_hora = $request->get('data_hora');
+        // $fornecedor->telefone = $request->get('telefone');
+        // $fornecedor->rg = $request->get('rg');
+        // $fornecedor->data_nascimento = $request->get('data_nascimento');
+        // $fornecedor->save();
+    //     return redirect('/fornecedores')->with('sucesso', 'Fornecedor atualizado!');
+    // }
+    $demaior = 1; 
+            $empresa = Empresa::find($request->id_empresa);
+            
+        if($demaior == 1) {
+            $fornecedor = Fornecedor::find($id);
+            $fornecedor->nome = $request->get('nome');
+            $fornecedor->tipo_pessoa = $request->get('tipo_pessoa');
+            $fornecedor->cpf_cnpj = $request->get('cpf_cnpj');
+            $fornecedor->data_hora = $request->get('data_hora');
+            $fornecedor->telefone = $request->get('telefone');
+            $fornecedor->rg = $request->get('rg');
+            $fornecedor->data_nascimento = $request->get('data_nascimento');
+            $fornecedor->save();
+            return redirect('/fornecedores')->with('sucesso', 'Fornecedor salvo!');
+        }else{
+            $error = 'Menor de idade!';
+            return redirect()->route('fornecedores.index')->with(['erro' => $error]);
+        }
+        return redirect()->route('fornecedores.index');
+
+        if($empresa->uf == 'PR' && $fornecedor->tipo_pessoa == 'F') {
+                $verificar = strtotime(Carbon::now()->subYears(18)->format('d-m-Y'))-strtotime($request->data_nascimento);
+                if($verificar >= 0) {
+                } else {
+                    $demaior = 0;
+                }
+    
+        }
+
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -142,4 +175,5 @@ class FornecedorController extends Controller
 
         return redirect('/fornecedores')->with('sucesso', 'Fornecedor deletado!');
     }
+
 }

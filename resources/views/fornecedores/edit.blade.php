@@ -28,6 +28,15 @@
             @csrf
 
             <div class="form-group">
+            <label for="id_empresa">Escolha uma empresa</label>
+            <select id="nomes" name="id_empresa" class="form-control">
+            @foreach ($empresas as $empresa)
+                <option value="{{$empresa->id}}" {{isset($fornecedor->id_empresa) ? ($empresa->id == $fornecedor->id_empresa) ? 'selected' : '' : '' }}>{{$empresa->nome_fantasia}}</option>
+            @endforeach
+            </select>
+            </div>
+
+            <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input id="nomes" type="text" class="form-control" name="nome" value={{ $fornecedor->nome }} />
             </div>
@@ -62,7 +71,7 @@
             </div>
             <div class="form-group">
                 <label for="data_nascimento">Data de Nascimento:</label>
-                <input id="data_nascimento" type="text" class="form-control" name="data_nascimento" value={{ $fornecedor->data_nascimento }} />
+                <input id="data_nascimento" type="date" class="form-control" name="data_nascimento" value={{ $fornecedor->data_nascimento }} />
             </div>
             <button type="submit" class="btn btn-primary">Atualizar</button>
         </form>

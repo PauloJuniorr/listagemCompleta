@@ -59,7 +59,7 @@
         </div>
         <div class="form-group">
           <label for="data_hora">Data e Hora:</label>
-          <input id="data_hora" type="datetime" class="form-control" name="data_hora" placeholder="Ex: 2020-20-20 20:20:20" required/>
+          <input id="data_hora" type="text" class="form-control" name="data_hora" placeholder="Ex: 2020-20-20 20:20:20" required/>
         </div>
         <div class="form-group">
           <label for="telefone">Telefone:</label>
