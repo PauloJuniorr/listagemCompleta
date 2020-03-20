@@ -1,0 +1,48 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+#uf {
+    width: 14%;
+}
+
+#nome_fantasia {
+    width: 50%;
+}
+
+#cnpj {
+    width: 50%;
+}
+
+#nomes {
+    width: 50%;
+}
+
+#tipo_pessoa {
+    width: 14%;
+}
+
+#cpf_cnpj {
+    width: 50%;
+}
+
+#data_hora {
+    width: 25%;
+}
+
+#telefone {
+    width: 25%;
+}
+
+#rg {
+    width: 25%;
+}
+
+#data_nascimento {
+    width: 25%;
+}
