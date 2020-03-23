@@ -160,6 +160,7 @@ return [
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
         /*
@@ -191,6 +192,7 @@ return [
     'aliases' => [
 
         'App' => Illuminate\Support\Facades\App::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

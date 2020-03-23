@@ -23,4 +23,9 @@ Route::resource('fornecedores', 'FornecedorController');
 
 // Auth::routes();
 
+Route::get('/fornecedores/search', [
+    'uses' => 'FornecedorController@busca',
+    'as' => 'fornecedor.search'
+]);
+
 Route::get('/home', 'HomeController@index')->name('home');

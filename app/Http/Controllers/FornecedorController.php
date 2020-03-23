@@ -176,4 +176,10 @@ class FornecedorController extends Controller
         return redirect('/fornecedores')->with('sucesso', 'Fornecedor deletado!');
     }
 
+    public function search(request $request)
+    {
+        $pesquisa = $request->q;
+        $dados = Fornecedor::where('nome', 'LIKE', '%'.$pesquisa.'%')->orwhere('cpf_cnpj', 'LIKE', '%'.$pesquisa.'%')->get();
+        return view('fornecedores.index')->with(['dados' => $dados]);
+    }
 }
